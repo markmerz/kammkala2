@@ -1,0 +1,81 @@
+<?page title="Configure routers" contentType="text/html;charset=UTF-8"?>
+<zk>
+
+	<window title="Configure routers" border="normal" id="rwin"
+		apply="ee.ut.mrz.kammkala.web.RoutersMVC">
+
+		<grid id="rgrid">
+			<columns>
+				<column label="Name" />
+				<column label="Address" />
+				<column label="Community/User" />
+				<column label="Status" />
+				<column label="Updated" />
+				<column label="Action" />
+			</columns>
+		</grid>
+		<zscript><![CDATA[
+	rgrid.setModel(new ee.ut.mrz.kammkala.web.RoutersConfigListModel());
+	rgrid.setRowRenderer(new ee.ut.mrz.kammkala.web.RoutersConfigRenderer());
+]]></zscript>
+
+		<button label="Add new" onClick="newrwin.setVisible(true)" />
+
+		<timer id="rtimer" repeats="true" delay="1000" />
+
+
+		
+
+		<div id="newrwin" visible="false">
+			<separator height="20px" />
+			<grid>
+				<columns>
+					<column label="Address" />
+					<column label="Community/User" />
+					<column label="Password" />
+					<column label="Type" />
+					<column label="Query" />
+					<column label="Status" />					
+					<column label="" />
+				</columns>
+				<rows>
+					<row >						
+						<cell>
+							<textbox id="routerAddress" width="98%" />
+						</cell>
+						<cell>
+							<textbox id="routerCommunity" width="98%" />
+						</cell>
+						<cell>
+							<textbox id="routerPassword" width="98%" disabled="true"/>
+						</cell>
+						<cell>
+						<combobox id="carriertype" readonly="true" text="SNMP" width="80px">
+							<comboitem label="SNMP"/>
+							<comboitem label="Cisco CLI"/>
+						</combobox>
+						</cell>
+						<cell>
+						
+						<combobox text="IPv4" id="netquerytype" readonly="true" width="70px" >
+							<comboitem label="IPv4"/>
+							<comboitem label="IPv6"/>
+							<comboitem label="Both"/>
+						</combobox>
+						</cell>
+						<cell>
+							<label id="newRouterStatus" value="" />
+						</cell>
+						
+						<cell align="center">
+							<button id="newRouterCancel" label="Cancel"
+								onClick="newrwin.setVisible(false)" />
+							<space width="5px" />							
+							<button id="newRouterSave" label="Save" />
+						</cell>
+					</row>
+				</rows>
+			</grid>
+		</div>
+	</window>
+</zk>

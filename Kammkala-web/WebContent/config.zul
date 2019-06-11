@@ -1,0 +1,33 @@
+<?page title="Kammkala web interface" contentType="text/html;charset=UTF-8"?>
+<zk>
+
+
+	<tabbox>
+		<tabs>
+			<tab label="Routers" />
+			<tab label="Switches" />
+			<tab label="Options" />
+			<tab id="dbtab" label="Database"/>
+			<zscript><![CDATA[ 
+				if (ee.ut.mrz.kammkala.web.DatabaseSettingsMVC.isDbFailed()) {
+					dbtab.setSelected(true);
+				}
+			]]></zscript>
+		</tabs>
+		<tabpanels>
+			<tabpanel>
+				<include src="/routersconfig.zul" />
+			</tabpanel>
+			<tabpanel>
+				<include src="/switchesconfig.zul" />
+ 			</tabpanel>
+			<tabpanel>
+				<include src="/options.zul" />
+			</tabpanel>
+			<tabpanel>
+				<include src="/databaseconfig.zul" />
+			</tabpanel>
+		</tabpanels>
+	</tabbox>
+
+</zk>

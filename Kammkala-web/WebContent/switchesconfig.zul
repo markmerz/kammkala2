@@ -1,0 +1,58 @@
+<?page title="Configure switches" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window title="Configure switches" border="normal" id="swin"
+		apply="ee.ut.mrz.kammkala.web.SwitchesMVC">
+
+		<button label="Add new" onClick="newswin.setVisible(true)" />
+		<separator height="20px" />
+		<div id="newswin" visible="false">
+			<separator height="20px" />
+			<grid>
+				<columns>
+					<column label="Address" />
+					<column label="Community/User" />			
+					<column label="" />
+				</columns>
+				<rows>
+					<row >
+						<cell>
+							<textbox id="switchAddress" width="98%" />
+						</cell>
+						<cell>
+							<textbox id="switchCommunity" width="98%" />
+						</cell>
+											
+												
+						<cell align="center">
+							<button id="newSwitchCancel" label="Cancel"
+								onClick="newswin.setVisible(false)" />
+							<space width="5px" />							
+							<button id="newSwitchSave" label="Save" />
+						</cell>
+					</row>
+				</rows>
+			</grid>
+			<separator height="20px" />
+		</div>
+		<grid id="sgrid">
+			<columns>
+				<column label="Name" />
+				<column label="Address" />
+				<column label="Community" />
+				<column label="Status" />
+				<column label="Updated" />
+				<column label="Action" />
+			</columns>
+		</grid>
+		<zscript><![CDATA[
+	sgrid.setModel(new ee.ut.mrz.kammkala.web.SwitchesConfigListModel());
+	sgrid.setRowRenderer(new ee.ut.mrz.kammkala.web.SwitchesConfigRenderer());
+]]></zscript>
+
+		
+
+		<timer id="stimer" repeats="true" delay="1000" />
+		
+		
+	</window>
+</zk>

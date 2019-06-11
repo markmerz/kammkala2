@@ -1,0 +1,39 @@
+<?page title="Search" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="Search" border="normal" apply="ee.ut.mrz.kammkala.web.SearchMVC">
+	<grid>
+		<columns>
+			<column label=""/>
+			<column label=""/>
+			<column label=""/>
+			<column label=""/>
+			<column label=""/>
+		</columns>
+		<rows>
+			<row>
+				<cell>Time: yyyy-MM-dd hh:mm<textbox id="timeTextbox"/></cell>
+				<cell>MAC: <textbox id="macTextbox"/></cell>
+				<cell>IP: <textbox id="ipTextbox"/></cell>
+				<cell>Name: <textbox id="nameTextbox"/></cell>
+				<cell><button id="searchButton" label="Search" /></cell>
+			</row>
+		</rows>
+	</grid>
+	<space height="30px"/>
+	<label id="feedbackLabel" value="" />
+	<space height="30px"/>
+	<grid id="resultsGrid" visible="false">
+		<columns>
+			<column label="Time"/>
+			<column label="MAC"/>
+			<column label="IP"/>
+			<column label="Switch"/>
+			<column label="Port"/>
+		</columns>
+		<rows>
+			<row>	
+			</row>
+		</rows>
+	</grid>
+</window>
+</zk>

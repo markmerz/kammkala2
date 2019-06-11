@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>Kammkala-web</display-name>
+  <listener>
+  	<description>
+  	Used to cleanup when a session is destroyed</description>
+  	<display-name>ZK Session cleaner</display-name>
+  	<listener-class>org.zkoss.zk.ui.http.HttpSessionListener</listener-class>
+  </listener>
+  <servlet>
+  	<description>
+  	The ZK loader for ZUML pages</description>
+  	<servlet-name>zkLoader</servlet-name>
+  	<servlet-class>org.zkoss.zk.ui.http.DHtmlLayoutServlet</servlet-class>
+  	<init-param>
+  		<param-name>update-uri</param-name>
+  		<param-value>/zkau</param-value>
+  	</init-param>
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet>
+  	<description>
+  	The asynchronous update engine for ZK</description>
+  	<servlet-name>auEngine</servlet-name>
+  	<servlet-class>org.zkoss.zk.au.http.DHtmlUpdateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>zkLoader</servlet-name>
+  	<url-pattern>*.zul</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>zkLoader</servlet-name>
+  	<url-pattern>*.zhtml</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>auEngine</servlet-name>
+  	<url-pattern>/zkau/*</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>index.zul</welcome-file>
+  </welcome-file-list>
+  <resource-ref>
+	<description>MySQL Datasource</description>
+	<res-ref-name>jdbc/kammkala</res-ref-name>
+	<res-type>javax.sql.DataSource</res-type>
+	<res-auth>Container</res-auth>
+  </resource-ref>
+  
+  <security-constraint>
+   <display-name>Security Constraint</display-name>
+   <web-resource-collection>
+      <web-resource-name>Protected Area</web-resource-name>
+      <!-- Define the context-relative URL(s) to be protected -->
+      <url-pattern>/*</url-pattern>
+      <!-- If you list http methods, only those methods are protected -->
+   </web-resource-collection>
+   <auth-constraint>
+      <!-- Anyone with one of the listed roles may access this area -->
+      <role-name>ak</role-name>
+   </auth-constraint>
+</security-constraint>
+
+<!-- Default login configuration uses form-based authentication -->
+<login-config>
+   <auth-method>FORM</auth-method>
+   <realm-name>Form-Based Authentication Area</realm-name>
+   <form-login-config>
+     <form-login-page>/login.jsp</form-login-page>
+     <form-error-page>/loginerror.jsp</form-error-page>
+   </form-login-config>
+</login-config>
+
+<!-- Security roles referenced by this web application -->
+<security-role>
+   <role-name>ak</role-name>
+</security-role>
+</web-app>

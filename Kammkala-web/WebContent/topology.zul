@@ -1,0 +1,25 @@
+<?page title="Topology" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="Topology" border="normal" apply="ee.ut.mrz.kammkala.web.TopologyMVC">
+	
+	
+	<timer id="timer" repeats="true" delay="100000" />
+	<zscript><![CDATA[
+	List topologyTimes = ee.ut.mrz.kammkala.web.DataBase.getTopologyTimes();
+	]]></zscript>
+	
+	<grid id="tgrid" autopaging="true" mold="paging" vflex="true">
+		<columns>
+			<column label="Topology"/>
+			<column></column>		
+		</columns>
+		<rows >
+			<row forEach="${topologyTimes}">
+				<cell>${each}</cell><cell> <button id="button_${each}" label="Download"/></cell>				
+			</row>
+		</rows>
+	</grid>
+	
+
+</window>
+</zk>

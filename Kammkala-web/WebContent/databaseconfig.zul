@@ -1,0 +1,37 @@
+<?page title="Configure Database" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window title="Database" border="normal"
+		apply="ee.ut.mrz.kammkala.web.DatabaseSettingsMVC">
+		We expecting JNDI resource "jdbc/kammkala" from
+		our J2EE container. If we have it then we can generate needed
+		database schema ourself.
+		<grid>
+			<columns>
+				<column label="Data" />
+				<column label="Status" />
+			</columns>
+			<rows>
+
+				<row>
+					<cell>
+						JNDI resource "jdbc/kammkala"
+					</cell>
+					<cell>
+						<label id="jndiStatus" width="100%"
+							value="Not available" />
+					</cell>
+				</row>
+				<row>
+					<cell>Database schema</cell>
+					<cell>
+						<label id="dbSchema" width="100%"
+							value="Not available" />
+					</cell>
+				</row>
+
+			</rows>
+		</grid>
+		<button id="schemaButton" label="Initialize schema"
+			disabled="true" />
+	</window>
+</zk>

@@ -1,0 +1,17 @@
+<Context>
+ 
+  <Resource name="jdbc/kammkala" auth="Container" type="javax.sql.DataSource"
+               maxActive="50" maxIdle="30" maxWait="10000"
+               username="kammkala" password="Salakala1" 
+               driverClassName="com.mysql.jdbc.Driver"
+               url="jdbc:mysql://kammkala.ut.ee:3306/kammkala"/>
+               
+   <Realm className="org.apache.catalina.realm.JNDIRealm" debug="99"
+			connectionURL="ldap://ldap2.ccu.ut.ee:389"
+			userPattern="uid={0},ou=People,dc=ut,dc=ee"
+			roleBase="ou=Group,dc=ut,dc=ee"
+			roleName="cn"
+			roleSearch="memberUid={1}"
+	/>
+ 
+</Context>

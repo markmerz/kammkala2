@@ -1,0 +1,62 @@
+<?page title="Options" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window title="Options" id="optionswin" border="normal" apply="ee.ut.mrz.kammkala.web.OptionsMVC">
+		<grid>
+			<columns>
+				<column label="Option" />
+				<column label="Value" />
+				<column label="Description" />
+			</columns>
+			<rows>
+				<row>
+					<cell>Switch polling interval</cell>
+					<cell>
+						<intbox id="switchpollinterval" />
+						seconds
+					</cell>
+					<cell>
+						Delay between sequential snmp walks to switch.
+						Shorter delay means more stress to switches
+						processor. 30 seconds is recommended.
+					</cell>
+				</row>
+				<row>
+					<cell>Router polling interval</cell>
+					<cell>
+						<intbox id="routerpollinterval" />
+						seconds
+					</cell>
+					<cell>
+						Delay between sequential requests to router.
+						Shorter delay means more stress to router
+						processor. 600 seconds is recommended.
+					</cell>
+				</row>
+				<row>
+					<cell>Delay between threads</cell>
+					<cell>
+						<intbox id="delaybetweenthreads" />
+						milliseconds
+					</cell>
+					<cell>
+						When application starts then it waits given time
+						before launching next information gathering
+						thread. This behavior lessens network traffic in
+						application start.
+					</cell>
+				</row>
+			</rows>
+		</grid>
+		<separator height="10px"/>
+		<button id="save" label="save"/> <button id="cancel" label="cancel"/>
+	</window>
+</zk>
+
+<!-- 
+	private static Config instance;
+	private int switchpollinterval = 30; // seconds
+	private int routerpollinterval = 30; // seconds
+	private int delaybetweenthreads = 500; // ms
+	private int switchtimeout = 1200; // seconds
+	private int routertimeout = 86400; // seconds
+-->
